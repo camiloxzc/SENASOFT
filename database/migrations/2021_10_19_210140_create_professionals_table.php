@@ -15,6 +15,9 @@ class CreateProfessionalsTable extends Migration
     {
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('career');
+            $table->string('signature');
             $table->timestamps();
         });
     }
