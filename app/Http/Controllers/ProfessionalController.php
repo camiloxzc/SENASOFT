@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
 class ProfessionalController extends Controller
@@ -13,6 +14,8 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
+        $prof = Professional::get();
+        return view('professionals.index',compact('prof'));
         //
     }
 
@@ -24,6 +27,7 @@ class ProfessionalController extends Controller
     public function create()
     {
         //
+        return view('professionals.create');
     }
 
     /**
@@ -34,7 +38,8 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Professional::create($request->all());
+        return redirect()->route('professional.index');
     }
 
     /**
@@ -79,6 +84,9 @@ class ProfessionalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prof=Professional::find($id);
+        $prof->delete();
+
+        return back();
     }
 }

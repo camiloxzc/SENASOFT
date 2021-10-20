@@ -11,6 +11,11 @@ class History extends Model
 
     protected $table = 'histories';
     protected $fillable=[
-        '',
+        'id',
+        'history',
+        'date',
+        'idPatient',
+        'idProfessional'
     ];
+    protected $primaryKey = 'id';
 }

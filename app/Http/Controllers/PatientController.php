@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -13,7 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients= Patient::get();
+        return view('patients.index',compact('patients'));
     }
 
     /**
@@ -23,7 +25,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('patients.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'document'=>'required',
+            'name'=>'required'
+        ]);
+      $patient = Patient::create($request->all());
+    //   dd($patient);
+
+      return redirect()->route('patient.index');
     }
 
     /**
@@ -79,6 +88,8 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $patient=Patient::findOrFail($id) ;
+        $patient->delete();
+        return back();
     }
 }

@@ -9,6 +9,10 @@ class Professional extends Model
 {
     use HasFactory;
     protected $fillable=[
-        '',
+        'id',
+        'name',
+        'career',
+        'signature'
     ];
+    protected $primaryKey = 'id';
 }

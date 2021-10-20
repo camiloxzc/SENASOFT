@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
+use App\Models\Patient;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
 class HistoryController extends Controller
@@ -13,6 +16,8 @@ class HistoryController extends Controller
      */
     public function index()
     {
+        $historia = History::paginate(10);
+        return view('histories.index',compact('historia'));   
         //
     }
 
@@ -23,7 +28,11 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        //
+        $paciente=Patient::select('patients.name','patients.id')->get()->toArray();
+        $profesional=Professional::select('Professionals.name','Professionals.id')->get()->toArray();
+
+        // dd($paciente);
+        return view('histories.create',compact('paciente','profesional'));
     }
 
     /**
@@ -34,7 +43,17 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $img= $request->file('history');
+        // dd($img);
+        $img->move('uploads',$img->getClientOriginalName());
+        $historia = History::create([
+        'history' => $img->getClientOriginalName(),
+        'date'=>$request->input('date'),
+        'idPatient'=>$request->input('idPatient'),
+        'idProfessional'=>$request->input('idProfessional'),
+        ]);
+
+        return redirect()->route('histo.index');
     }
 
     /**
@@ -79,6 +98,8 @@ class HistoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $historia=History::findOrfail($id);
+        $historia->delete();
+        return back();
     }
 }
