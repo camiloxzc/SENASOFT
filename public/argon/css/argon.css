@@ -2829,6 +2829,10 @@ textarea.form-control
     display: flex;
     justify-content: end;
 }
+#imgH{
+    width:85px;
+    height:75px;
+}
 .form-inline
 {
     display: flex;

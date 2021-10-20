@@ -16,7 +16,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $historia = History::paginate(10);
+        $historia = History::select('*')->distinct('idPatient')->get();
         return view('histories.index',compact('historia'));   
         //
     }
