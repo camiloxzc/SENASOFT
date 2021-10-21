@@ -27,7 +27,7 @@
               <div class="row">
                 <label for="document" class="col-sm-2 col-form-label">Paciente</label>
                 <div class="col-sm-7">
-                    <select  class="form-control" id="sel1"  name="idPatient"  multiselect-search="true" multiselect-select-all="true" onchange="checkAll(this)">
+                    <select  class="form-control" id="mysearch"  name="idPatient"  multiselect-search="true" multiselect-select-all="true" onchange="checkAll(this)">
                             <option disable:option autofocus>seleccionar paciente</option>
                         @foreach ($paciente as $paciente)
                             <option class="form-control text-dark" name="idPatient" value="{{$paciente['id']}}">{{ $paciente['name'] }}</option>
@@ -41,7 +41,7 @@
               <div class="row">
                 <label for="document" class="col-sm-2 col-form-label">Profesional</label>
                 <div class="col-sm-7">
-                    <select  class="form-control" id="sel1"  name="idProfessional"  multiselect-search="true" multiselect-select-all="true">
+                    <select  class="form-control" id="mysearch"  name="idProfessional"  multiselect-search="true" multiselect-select-all="true">
                             <option disable:option autofocus>seleccionar profesional</option>
                         @foreach ($profesional as $profesional)
                             <option class="form-control text-dark"  name="idProfessional" value="{{$profesional['id']}}">{{ $profesional['name'] }}</option>
@@ -93,14 +93,9 @@
 </div>
 @include('layouts.footers.auth')
 </div>
-<script>
-    $(document).ready(function() {
-        $('.mdb-select').materialSelect();
-    });
-</script>
 @endsection
-
 @push('js')
+
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

@@ -10,8 +10,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title">Recursos humano
-
+                                <h3 class="card-title"><strong>RECURSO HUMANO</strong>
+                                    <p class="card-category">Lista de profesionales de la salud</p>
                                     {{ Form::open(['route' => 'professional.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
                                     <div class="form-group" id="busc">
                                         {{ Form::text('buscar', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
@@ -23,9 +23,9 @@
                                         </button>
                                     </div>
                                     {{ Form::close() }}
-                                </h4>
+                                </h3>
 
-                                <p class="card-category">Lista de profesionales de la salud</p>
+
                             </div>
 
                             <div class="card-body">
@@ -37,16 +37,14 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover align-items-center" id="">
                                         <thead class="text-primary thead-dark">
-                                            <th class="col-md-1">ID</th>
                                             <th class="col-md-3">Nombre</th>
                                             <th class="col-md-3">Profesion</th>
                                             <th class="col-md-3">Firma</th>
-                                            <th class="col-md-2 text-right">Acciones</th>
+                                            <th class="col-md-3 text-right">Acciones</th>
                                         </thead>
                                         <tbody>
                                             @forelse ($prof as $prof)
                                             <tr>
-                                                <td>{{ $prof->id }}</td>
                                                 <td>{{ $prof->name }}</td>
                                                 <td>
                                                 @foreach ($career as $id => $modulo)
@@ -55,8 +53,9 @@
                                                     @endif
                                                 @endforeach
                                                 </td>
-                                                <td>{{ $prof->signature}}</td>
+                                                <td><img id="imgH" src="/signatures/{{ $prof->signature}}" target="blank_"></td>
                                                 <td class="td-actions text-right">
+                                                    <a class="btn btn-sm btn-info" href="signatures/{{ $prof->signature}}" target="blank_"><i class="material-icons">visibility</i></a>
                                                     <form action="{{ route('professional.destroy', $prof->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                                         @csrf
                                                         @method('DELETE')

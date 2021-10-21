@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards2')
+    @include('layouts.headers.cards3')
     <div class="header bg-gradient-primary py-7 py-lg-8">
         <div class="container">
             <div class="header-body text-center mt-7 mb-7">

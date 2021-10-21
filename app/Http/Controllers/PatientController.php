@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\History;
 use App\Models\Patient;
+use Barryvdh\DomPDF\PDF;
+use App\Models\Professional;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -13,6 +15,14 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function historias($id){
+        $detalle = History::get();
+        $Patient = Patient::select('id')->where('id','=',$id)->get();
+        $data = compact('detalle');
+        $pdf = PDF::loadView('pdf.historias', $data);
+        dd($pdf);
+        return $pdf->stream();
+    }
     public function index()
     {
         $patients= Patient::get();
@@ -56,10 +66,11 @@ class PatientController extends Controller
     public function show($id)
     {
         //
+        $profesional = Professional::get();
         $detalle = History::get();
         $Patient = Patient::select('id')->where('id','=',$id)->get();
         // dd($Patient);
-        return view('patients.show',compact('detalle','Patient'));
+        return view('patients.show',compact('detalle','Patient','profesional'));
     }
 
     /**

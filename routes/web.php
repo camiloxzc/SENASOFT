@@ -23,29 +23,29 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['prefix'=>'histo', 'as' =>'histo.'],function(){
-	Route::get('index', [HistoryController::class,'index'])->name('index');
-	Route::get('create', [HistoryController::class,'create'])->name('create');
-    Route::get('digitalizar', [HistoryController::class,'digitalizar'])->name('digitalizar');
-	Route::post('store',[HistoryController::class,'store'])->name('store');
-	Route::delete('destroy/{histo}',[HistoryController::class,'destroy'])->name('destroy');
+Route::group(['middleware'=>'ValidarSesion'],function(){
+	Route::group(['prefix'=>'histo', 'as' =>'histo.'],function(){
+		Route::get('index', [HistoryController::class,'index'])->name('index');
+		Route::get('create', [HistoryController::class,'create'])->name('create');
+		Route::get('digitalizar', [HistoryController::class,'digitalizar'])->name('digitalizar');
+		Route::post('store',[HistoryController::class,'store'])->name('store');
+		Route::delete('destroy/{histo}',[HistoryController::class,'destroy'])->name('destroy');
+	});
+	Route::group(['prefix'=>'professional', 'as' =>'professional.'],function(){
+		Route::get('index', [ProfessionalController::class,'index'])->name('index');
+		Route::get('create', [ProfessionalController::class,'create'])->name('create');
+		Route::post('store',[ProfessionalController::class,'store'])->name('store');
+		Route::delete('destroy/{professional}',[ProfessionalController::class,'destroy'])->name('destroy');
+	});
+	Route::group(['prefix'=>'patient', 'as' =>'patient.'],function(){
+		Route::get('index', [PatientController::class,'index'])->name('index');
+		Route::get('create', [PatientController::class,'create'])->name('create');
+		Route::post('store', [PatientController::class,'store'])->name('store');
+		Route::get('show/{patient}', [PatientController::class,'show'])->name('show');
+		Route::delete('destroy/{patient}',[PatientController::class,'destroy'])->name('destroy');
+		Route::get('historias/{patient}', [PatientController::class,'historias'])->name('historias');
+	});
 });
-Route::group(['prefix'=>'professional', 'as' =>'professional.'],function(){
-	Route::get('index', [ProfessionalController::class,'index'])->name('index');
-	Route::get('create', [ProfessionalController::class,'create'])->name('create');
-	Route::post('store',[ProfessionalController::class,'store'])->name('store');
-	Route::delete('destroy/{professional}',[ProfessionalController::class,'destroy'])->name('destroy');
-});
-Route::group(['prefix'=>'patient', 'as' =>'patient.'],function(){
-	Route::get('index', [PatientController::class,'index'])->name('index');
-	Route::get('create', [PatientController::class,'create'])->name('create');
-	Route::post('store', [PatientController::class,'store'])->name('store');
-    Route::get('show/{patient}', [PatientController::class,'show'])->name('show');
-	Route::delete('destroy/{patient}',[PatientController::class,'destroy'])->name('destroy');
-
-});
-
 
 
 Route::group(['middleware' => 'auth'], function () {

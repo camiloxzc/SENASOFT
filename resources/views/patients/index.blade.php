@@ -10,8 +10,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Pacietes
-
+                            <h3 class="card-title"><strong>PACIENTES</strong>
+                                <p class="card-category">Lista de pacientes</p>
                                 {{ Form::open(['route' => 'patient.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
                                 <div class="form-group" id="busc">
                                     {{ Form::text('buscar', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
@@ -23,11 +23,8 @@
                                     </button>
                                 </div>
                                 {{ Form::close() }}
-                            </h4>
-
-                            <p class="card-category">Lista de pacientes</p>
+                            </h3>
                         </div>
-
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right p-2">
@@ -37,15 +34,13 @@
                             <div class="table-responsive">
                                 <table class="table table-hover align-items-center" id="">
                                     <thead class="text-primary thead-dark">
-                                        <th class="col-md-1">ID</th>
                                         <th class="col-md-4">Documento</th>
-                                        <th class="col-md-4">Nombre</th>
+                                        <th class="col-md-5">Nombre</th>
                                         <th class="col-md-3 text-right">Acciones</th>
                                     </thead>
                                     <tbody>
                                         @forelse ($patients as $patient)
                                         <tr>
-                                            <td>{{ $patient->id }}</td>
                                             <td>{{ $patient->document }}</td>
                                             <td>{{ $patient->name}}</td>
                                             <td class="td-actions text-right">

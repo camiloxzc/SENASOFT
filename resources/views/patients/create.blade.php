@@ -27,7 +27,7 @@
               <div class="row">
                 <label for="document" class="col-sm-2 col-form-label">Documento</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" name="document" value="{{ old('document') }}" placeholder="Ingrese documento" onkeyup="onlyNumbers(this)"  autofocus>
+                  <input type="text" class="form-control" name="document" value="{{ old('document') }}" placeholder="Ingrese documento" onkeyup="numeros(this)"  autofocus>
                   @if ($errors->has('document'))
                     <span class="error text-danger" for="input-document">{{ $errors->first('document') }}</span>
                   @endif
@@ -36,7 +36,7 @@
               <div class="row">
                 <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" name="name" placeholder="Ingrese nombre del paciente" onkeyup="onlyLetters(this)" >
+                  <input type="text" class="form-control" name="name" placeholder="Ingrese nombre del paciente" onkeyup="letras(this)" >
                   @if ($errors->has('name'))
                     <span class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                   @endif
@@ -68,6 +68,7 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('js/validar.js')}}" defer></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 @endpush

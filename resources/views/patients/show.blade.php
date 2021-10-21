@@ -38,12 +38,10 @@
                             <div class="table-responsive">
                                 <table class="table table-hover align-items-center" id="">
                                     <thead class="text-primary thead-dark">
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Paciente</th>
-                                        <th scope="col">Historia</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">P. Salud</th>
-                                        <th scope="col">Fecha Prestación de Servicio</th>
+                                        <th class="col-sm-2">Codigo historia</th>
+                                        <th class="col-sm-2 ">Fecha de Servicio</th>
+                                        <th class="col-sm-3">Profesional de Salud</th>
+                                        <th class="col-sm-2">Fecha</th>
                                         <th class="text-right">Acciones</th>
                                     </thead>
                                     <tbody>
@@ -51,13 +49,17 @@
                                         @foreach ($Patient as $name=>$pat )
                                         @if ($detalle->idPatient == $pat->id)
                                         <tr>
-                                            <td>{{ $detalle->id }}</td>
-                                            <td>{{ $detalle->idPatient}}</td>
-                                            <td><img id="imgH" src="/uploads/{{ $detalle->history }}"></td>
+                                            <td class="text-center">{{ $detalle->id }}</td>
                                             <td>{{ $detalle->date}}</td>
-                                            <td>{{ $detalle->idProfessional}}</td>
+                                            @foreach($profesional as $name=>$pro )
+                                            @if($pro->id == $detalle->idProfessional)
+                                            <td class="text-center">{{ $pro->name}}</td>
+                                            @endif
+                                            @endforeach
                                             <td>{{ $detalle->created_at}}</td>
                                             <td class="td-actions text-right">
+                                            <a class="btn btn-sm btn-info" href="/uploads/{{ $detalle->history }}" target="blank_"><i class="material-icons">visibility</i></a>
+                                            <!-- <a class="btn btn-sm btn-info" href="/patient/historias/{{$detalle->history}}" target="blank_"><i class="material-icons">visibility</i></a> -->
                                                 <form action="{{route('histo.destroy',$detalle->id)}}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                                     @csrf
                                                     @method('DELETE')

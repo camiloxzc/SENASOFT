@@ -48,7 +48,15 @@ class ProfessionalController extends Controller
             'name'=>'required',
             'idCareer'=>'required'
         ]);
-        Professional::create($request->all());
+        $img= $request->file('signature');
+
+        $img->move('signatures',$img->getClientOriginalName());
+        Professional::create([
+            'signature' => $img->getClientOriginalName(),
+            'name'=>$request->input('name'),
+            'idCareer'=>$request->input('idCareer')
+            
+        ]);
         return redirect()->route('professional.index');
     }
 

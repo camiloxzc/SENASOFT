@@ -21,7 +21,7 @@ class HistoryController extends Controller
         // dd($paciente);
         return view('histories.digitalizar',compact('paciente','profesional'));
     }
-
+  
     public function index()
     {
         $historia = History::select('*')->distinct('idPatient')->get();
@@ -52,13 +52,13 @@ class HistoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'history'=>'required',
+            'history'=>'required|mimes:pdf|max:20480',
             'date'=>'required',
             'idPatient'=>'required',
             'idProfessional'=>'required',
         ]);
         $img= $request->file('history');
-        // dd($img);
+
         $img->move('uploads',$img->getClientOriginalName());
         $historia = History::create([
         'history' => $img->getClientOriginalName(),
