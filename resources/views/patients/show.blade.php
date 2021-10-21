@@ -10,9 +10,16 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">HISTORIAS
+                            <div class="card-header">
+                            <h4 class="card-title form-inline">HISTORIAS
+                                <div class="card-header pull-left" id="ret">
+                                &nbsp;&nbsp;&nbsp;<a class="btn btn-warning " href="{{route('patient.index')}}">Regresar</a>
+                                </div>
+                            </div>
+
 
                                 {{ Form::open(['route' => 'histo.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
+
                                 <div class="form-group" id="busc">
                                     {{ Form::text('buscar', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
                                 </div>
@@ -25,37 +32,33 @@
                                 {{ Form::close() }}
                             </h4>
 
-                            <p class="card-category">Lista de historias</p>
+                            <p class="card-category">Lista de historias clinicas</p>
                         </div>
-
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 text-right p-2">
-                                    <a href="{{route('histo.create')}}" class="btn btn-round btn-sm btn-facebook ">Anexar historia</a>
-                                </div>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table table-hover align-items-center" id="">
                                     <thead class="text-primary thead-dark">
-                                        <th class="col-sm-2">ID</th>
-                                        <th class="col-sm-2">Paciente</th>
-                                        <th class="col-sm-2">Historia</th>
-                                        <th class="col-sm-2">Fecha</th>
-                                        <th class="col-sm-2">P. Salud</th>
-                                        <th class="col-sm-2 text-right">Acciones</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Paciente</th>
+                                        <th scope="col">Historia</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">P. Salud</th>
+                                        <th scope="col">Fecha Prestación de Servicio</th>
+                                        <th class="text-right">Acciones</th>
                                     </thead>
                                     <tbody>
-                                        @forelse ($historia as $historia)
+                                        @forelse ($detalle as $detalle)
+                                        @foreach ($Patient as $name=>$pat )
+                                        @if ($detalle->idPatient == $pat->id)
                                         <tr>
-                                            <td>{{ $historia->id }}</td>
-                                            <td>{{ $historia->idPatient}}</td>
-                                            <td><img id="imgH" src="/uploads/{{ $historia->history }}"></td>
-                                            <td>{{ $historia->date}}</td>
-                                            <td>{{ $historia->idProfessional}}</td>
+                                            <td>{{ $detalle->id }}</td>
+                                            <td>{{ $detalle->idPatient}}</td>
+                                            <td><img id="imgH" src="/uploads/{{ $detalle->history }}"></td>
+                                            <td>{{ $detalle->date}}</td>
+                                            <td>{{ $detalle->idProfessional}}</td>
+                                            <td>{{ $detalle->created_at}}</td>
                                             <td class="td-actions text-right">
-                                                <a href="#" class="btn btn-sm btn-info btn-round"><i class="material-icons">visibility</i></a>
-                                                <a href="#" class="btn btn-sm btn-warning"><i class="material-icons">edit</i></a>
-                                                <form action="{{route('histo.destroy',$historia->id)}}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
+                                                <form action="{{route('histo.destroy',$detalle->id)}}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-round btn-danger" type="submit" rel="tooltip">
@@ -64,6 +67,8 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @endif
+                                        @endforeach
                                         @empty
                                         <tr>
                                             <td colspan="2">Sin registros.</td>

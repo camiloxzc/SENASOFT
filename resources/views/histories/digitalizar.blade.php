@@ -28,13 +28,13 @@
                 <label for="document" class="col-sm-2 col-form-label">Paciente</label>
                 <div class="col-sm-7">
                     <select  class="form-control" id="sel1"  name="idPatient"  multiselect-search="true" multiselect-select-all="true" onchange="checkAll(this)">
-                            <option disable:option autofocus>seleccionar paciente</option>
+                            <option disable:option autofocus>Seleccione paciente</option>
                         @foreach ($paciente as $paciente)
                             <option class="form-control text-dark" name="idPatient" value="{{$paciente['id']}}">{{ $paciente['name'] }}</option>
                         @endforeach
                     </select>
-                  @if ($errors->has('document'))
-                    <span class="error text-danger" for="input-document">{{ $errors->first('document') }}</span>
+                  @if ($errors->has('idPatient'))
+                    <span class="error text-danger" for="input-document">{{ $errors->first('idPatient') }}</span>
                   @endif
                 </div>
               </div>
@@ -42,13 +42,12 @@
                 <label for="document" class="col-sm-2 col-form-label">Profesional</label>
                 <div class="col-sm-7">
                     <select  class="form-control" id="sel1"  name="idProfessional"  multiselect-search="true" multiselect-select-all="true">
-                            <option disable:option autofocus>seleccionar profesional</option>
                         @foreach ($profesional as $profesional)
                             <option class="form-control text-dark"  name="idProfessional" value="{{$profesional['id']}}">{{ $profesional['name'] }}</option>
                         @endforeach
                     </select>
-                  @if ($errors->has('profesional'))
-                    <span class="error text-danger" for="input-profesional">{{ $errors->first('profesional') }}</span>
+                  @if ($errors->has('idProfessional'))
+                    <span class="error text-danger" for="input-profesional">{{ $errors->first('idProfessional') }}</span>
                   @endif
                 </div>
               </div>
@@ -81,7 +80,7 @@
             </div>
             <!--Footer-->
             <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="{{route('histo.index')}}">
+              <button type="submit" class="btn btn-primary">Guardar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="{{route('home')}}">
                   Cancelar</a>
             </div>
             <!--End footer-->

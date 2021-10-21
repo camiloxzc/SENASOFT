@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Career;
+use App\Models\History;
 use App\Models\Professional;
 use Illuminate\Http\Request;
 
@@ -12,10 +14,12 @@ class ProfessionalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $prof = Professional::get();
-        return view('professionals.index',compact('prof'));
+        $career = Career::get();
+        // dd($prof);
+        return view('professionals.index',compact('prof','career'));
         //
     }
 
@@ -27,7 +31,8 @@ class ProfessionalController extends Controller
     public function create()
     {
         //
-        return view('professionals.create');
+        $profesion=Career::get();
+        return view('professionals.create',compact('profesion'));
     }
 
     /**
@@ -38,6 +43,11 @@ class ProfessionalController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'signature'=>'required',
+            'name'=>'required',
+            'idCareer'=>'required'
+        ]);
         Professional::create($request->all());
         return redirect()->route('professional.index');
     }

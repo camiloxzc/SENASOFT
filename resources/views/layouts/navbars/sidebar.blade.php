@@ -84,8 +84,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('histo.index')}}">
-                        <i class="ni ni-briefcase-24 text-blue"></i> {{ __('Historias') }}
+                    <a class="nav-link" href="{{route('histo.digitalizar')}}">
+                        <i class="ni ni-briefcase-24 text-blue"></i> {{ __('Digitalización historias') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -98,11 +98,11 @@
                         <i class="ni ni-ambulance text-blue"></i> {{ __('Pacientes') }}
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('icons') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                     </a>
-                </li>
+                </li> -->
             </ul>
             <!-- Divider -->
             <hr class="my-3">

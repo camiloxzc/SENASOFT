@@ -37,10 +37,10 @@
                             <div class="table-responsive">
                                 <table class="table table-hover align-items-center" id="">
                                     <thead class="text-primary thead-dark">
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Documento</th>
-                                        <th scope="col">Nombre</th>
-                                        <th class="text-right">Acciones</th>
+                                        <th class="col-md-1">ID</th>
+                                        <th class="col-md-4">Documento</th>
+                                        <th class="col-md-4">Nombre</th>
+                                        <th class="col-md-3 text-right">Acciones</th>
                                     </thead>
                                     <tbody>
                                         @forelse ($patients as $patient)
@@ -49,6 +49,8 @@
                                             <td>{{ $patient->document }}</td>
                                             <td>{{ $patient->name}}</td>
                                             <td class="td-actions text-right">
+                                                <a href="{{ route('patient.show', $patient->id) }}" class="btn btn-sm btn-round btn-info"> <i
+                                                class="material-icons">visibility</i> </a>
                                                 <form action="{{ route('patient.destroy', $patient->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                                     @csrf
                                                     @method('DELETE')

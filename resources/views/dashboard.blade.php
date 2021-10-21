@@ -1,12 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.headers.cards')
-    
+    @include('layouts.headers.cards2')
+    <div class="header bg-gradient-primary py-7 py-lg-8">
+        <div class="container">
+            <div class="header-body text-center mt-7 mb-7">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <h1 class="text-white">{{ __('Bienvenido a la solución para digitalizar historias clínicas.') }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container mt--10 pb-5"></div>
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-8 mb-5 mb-xl-0">
-                <div class="card bg-gradient-default shadow">
+                {{--<div class="card bg-gradient-default shadow">
                     <div class="card-header bg-transparent">
                         <div class="row align-items-center">
                             <div class="col">
@@ -38,9 +55,9 @@
                             <canvas id="chart-sales" class="chart-canvas"></canvas>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
-            <div class="col-xl-4">
+            {{--<div class="col-xl-4">
                 <div class="card shadow">
                     <div class="card-header bg-transparent">
                         <div class="row align-items-center">
@@ -57,9 +74,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
-        <div class="row mt-5">
+        {{--<div class="row mt-5">
             <div class="col-xl-8 mb-5 mb-xl-0">
                 <div class="card shadow">
                     <div class="card-header border-0">
@@ -277,7 +294,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
 
         @include('layouts.footers.auth')
     </div>

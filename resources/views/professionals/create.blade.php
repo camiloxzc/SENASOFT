@@ -34,11 +34,15 @@
                 </div>
               </div>
               <div class="row">
-                <label for="career" class="col-sm-2 col-form-label">Profesion</label>
+                <label for="idCareer" class="col-sm-2 col-form-label">Profesion</label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" name="career" placeholder="Ingrese la profesion" onkeyup="onlyNumbers(this)" >
-                  @if ($errors->has('career'))
-                    <span class="error text-danger" for="input-career">{{ $errors->first('career') }}</span>
+                    <select  class="form-control" id="sel1"  name="idCareer"  multiselect-search="true" multiselect-select-all="true" onchange="checkAll(this)">
+                        @foreach ($profesion as $profesion)
+                            <option class="form-control text-dark" name="idCareer" value="{{$profesion['id']}}">{{ $profesion['career'] }}</option>
+                        @endforeach
+                    </select>
+                  @if ($errors->has('idCareer'))
+                    <span class="error text-danger" for="input-profesion">{{ $errors->first('idCareer') }}</span>
                   @endif
                 </div>
               </div>
@@ -55,7 +59,7 @@
               <div class="row">
                 <div class="col-sm-7">
                     <div class="form-group">
-                        <div class="tab-content">    
+                        <div class="tab-content">
                         </div>
                     </div>
                 </div>

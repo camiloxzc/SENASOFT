@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,10 @@ class PatientController extends Controller
     public function show($id)
     {
         //
+        $detalle = History::get();
+        $Patient = Patient::select('id')->where('id','=',$id)->get();
+        // dd($Patient);
+        return view('patients.show',compact('detalle','Patient'));
     }
 
     /**

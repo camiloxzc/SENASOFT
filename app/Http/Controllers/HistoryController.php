@@ -14,10 +14,18 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function digitalizar(){
+        $paciente=Patient::select('patients.name','patients.id')->get()->toArray();
+        $profesional=Professional::select('Professionals.name','Professionals.id')->get()->toArray();
+
+        // dd($paciente);
+        return view('histories.digitalizar',compact('paciente','profesional'));
+    }
+
     public function index()
     {
         $historia = History::select('*')->distinct('idPatient')->get();
-        return view('histories.index',compact('historia'));   
+        return view('histories.index',compact('historia'));
         //
     }
 
@@ -43,6 +51,12 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'history'=>'required',
+            'date'=>'required',
+            'idPatient'=>'required',
+            'idProfessional'=>'required',
+        ]);
         $img= $request->file('history');
         // dd($img);
         $img->move('uploads',$img->getClientOriginalName());
@@ -53,7 +67,7 @@ class HistoryController extends Controller
         'idProfessional'=>$request->input('idProfessional'),
         ]);
 
-        return redirect()->route('histo.index');
+        return redirect()->route('home');
     }
 
     /**

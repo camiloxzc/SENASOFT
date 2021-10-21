@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfessionalsTable extends Migration
+class CreateCareersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateProfessionalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('professionals', function (Blueprint $table) {
+        Schema::create('careers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('idCareer')->references('id')->on('careers')->onDelete('cascade');
-            $table->string('signature');
+            $table->string('career');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateProfessionalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professionals');
+        Schema::dropIfExists('careers');
     }
 }
