@@ -14,4 +14,10 @@ class Patient extends Model
         'name'
     ];
     protected $primaryKey = 'id';
+
+    public function scopeSearch($query,$search){
+        if($search)
+            return $query->where('document','LIKE',"%$search%")
+            ->orWhere('name','LIKE',"%$search%");
+    }
 }

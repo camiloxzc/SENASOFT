@@ -14,7 +14,7 @@
                                 <p class="card-category">Lista de pacientes</p>
                                 {{ Form::open(['route' => 'patient.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
                                 <div class="form-group" id="busc">
-                                    {{ Form::text('buscar', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
+                                    {{ Form::text('search', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
                                 </div>
 
                                 <div class="form-group">

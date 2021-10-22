@@ -23,9 +23,13 @@ class PatientController extends Controller
         dd($pdf);
         return $pdf->stream();
     }
-    public function index()
+    public function index(Request $request)
     {
-        $patients= Patient::get();
+        $search = $request->get('search');
+
+        $patients= Patient::orderBy('patients.id')
+        ->search($search)
+        ->paginate(5);
         return view('patients.index',compact('patients'));
     }
 

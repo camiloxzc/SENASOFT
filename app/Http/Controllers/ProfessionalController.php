@@ -16,7 +16,10 @@ class ProfessionalController extends Controller
      */
     public function index(Request $request)
     {
-        $prof = Professional::get();
+        $search = $request->get('search');
+        $prof = Professional::orderBy('professionals.id')
+        ->search($search)
+        ->paginate(5);
         $career = Career::get();
         // dd($prof);
         return view('professionals.index',compact('prof','career'));
@@ -55,7 +58,7 @@ class ProfessionalController extends Controller
             'signature' => $img->getClientOriginalName(),
             'name'=>$request->input('name'),
             'idCareer'=>$request->input('idCareer')
-            
+
         ]);
         return redirect()->route('professional.index');
     }

@@ -42,6 +42,7 @@
                 <label for="document" class="col-sm-2 col-form-label">Profesional</label>
                 <div class="col-sm-7 p-2">
                     <select  class="form-control" id="professionals"  name="idProfessional"  multiselect-search="true" multiselect-select-all="true">
+                    <option disable:option autofocus>Seleccione profesional</option>
                         @foreach ($profesional as $profesional)
                             <option class="form-control text-dark"  name="idProfessional" value="{{$profesional['id']}}">{{ $profesional['name'] }}</option>
                         @endforeach
@@ -95,12 +96,12 @@
 @endsection
 
 @push('js')
-  <script>  
+  <script>
       $(document).ready(function(){
         $('#patients').select2();
       });
     </script>
-      <script>  
+      <script>
       $(document).ready(function(){
         $('#professionals').select2();
       });

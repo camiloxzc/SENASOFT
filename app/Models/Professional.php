@@ -15,4 +15,9 @@ class Professional extends Model
         'signature'
     ];
     protected $primaryKey = 'id';
+
+    public function scopeSearch($query,$search){
+        if($search)
+            return $query->where('name','LIKE',"%$search%");
+    }
 }

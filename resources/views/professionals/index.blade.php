@@ -14,7 +14,7 @@
                                     <p class="card-category">Lista de profesionales de la salud</p>
                                     {{ Form::open(['route' => 'professional.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
                                     <div class="form-group" id="busc">
-                                        {{ Form::text('buscar', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
+                                        {{ Form::text('search', null, ['class' => 'form-control pull-right','wire:model' => 'search', 'placeholder' => 'Buscar informacion']) }}
                                     </div>
 
                                     <div class="form-group">
