@@ -55,7 +55,7 @@
                                                 </td>
                                                 <td><img id="imgH" src="/signatures/{{ $prof->signature}}" target="blank_"></td>
                                                 <td class="td-actions text-right">
-                                                    <a class="btn btn-sm btn-info" href="signatures/{{ $prof->signature}}" target="blank_"><i class="material-icons">visibility</i></a>
+                                                    <!-- <a class="btn btn-sm btn-info" href="signatures/{{ $prof->signature}}" target="blank_"><i class="material-icons">visibility</i></a> -->
                                                     <form action="{{ route('professional.destroy', $prof->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro?')">
                                                         @csrf
                                                         @method('DELETE')

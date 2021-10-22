@@ -84,8 +84,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('histo.digitalizar') ? 'active' : ''}}" href="{{route('histo.digitalizar')}}">
-                        <i class="ni ni-briefcase-24 text-blue"></i> {{ __('Digitalización historias') }}
+                    <a class="nav-link {{request()->routeIs('patient.*') ? 'active' : ''}}" href="{{route('patient.index')}}">
+                        <i class="ni ni-ambulance text-blue"></i> {{ __('Pacientes') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -94,8 +94,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('patient.*') ? 'active' : ''}}" href="{{route('patient.index')}}">
-                        <i class="ni ni-ambulance text-blue"></i> {{ __('Pacientes') }}
+                    <a class="nav-link {{request()->routeIs('histo.digitalizar') ? 'active' : ''}}" href="{{route('histo.digitalizar')}}">
+                        <i class="ni ni-briefcase-24 text-blue"></i> {{ __('Digitalización historias') }}
                     </a>
                 </li>
                 <!-- <li class="nav-item">
