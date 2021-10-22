@@ -10,7 +10,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h3 class="card-title"><strong>RECURSO HUMANO</strong>
+                                <h3 class="card-title"><strong>RECURSOS HUMANOS</strong>
                                     <p class="card-category">Lista de profesionales de la salud</p>
                                     {{ Form::open(['route' => 'professional.index', 'method' => 'GET', 'class' => 'form-inline','id'=>'histo']) }}
                                     <div class="form-group" id="busc">
