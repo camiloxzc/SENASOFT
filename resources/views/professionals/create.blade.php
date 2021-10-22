@@ -11,7 +11,7 @@
             @csrf
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">Profesional</h4>
+                <h4 class="card-title"><strong>PROFESIONAL</strong></h4>
                 <p class="card-category">Información</p>
               </div>
               <div class="card-body">

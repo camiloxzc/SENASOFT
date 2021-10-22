@@ -11,7 +11,7 @@
           @csrf
           <div class="card">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">Paciente</h4>
+              <h4 class="card-title"><strong>PACIENTE</strong></h4>
               <p class="card-category">Información requerida</p>
             </div>
             <div class="card-body">
@@ -45,7 +45,7 @@
               <div class="row">
                 <div class="col-sm-7">
                     <div class="form-group">
-                        <div class="tab-content">    
+                        <div class="tab-content">
                         </div>
                     </div>
                 </div>
